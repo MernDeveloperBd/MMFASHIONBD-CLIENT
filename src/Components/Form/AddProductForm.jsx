@@ -134,7 +134,6 @@ const AddProductForm = ({
               <div className="space-y-1 text-sm">
                 <label htmlFor="subCategory" className="block text-gray-600">Sub Category</label>
                 <select
-                  required
                   className="w-full px-4 py-3 border-lime-300 focus:outline-lime-500 rounded-md bg-white"
                   name="subCategory"
                   id="subCategory"
@@ -157,7 +156,7 @@ const AddProductForm = ({
               <div className="space-y-1 text-sm">
                 <label htmlFor="popular" className="block text-gray-600">Popular</label>
                 <select
-                  required
+                  
                   className="w-full px-4 py-3 border-lime-300 focus:outline-lime-500 rounded-md bg-white"
                   name="popular"
                   id="popular"
@@ -176,7 +175,7 @@ const AddProductForm = ({
                   className="w-full px-4 py-3 border-lime-300 focus:outline-lime-500 rounded-md bg-white"
                   value={selectedColor}
                   onChange={handleColorChange}
-                  required
+                  
                 >
                   <option value="">Select Color</option>
                   {colors.map((col) => (
@@ -233,7 +232,7 @@ const AddProductForm = ({
             </div>
 
             {/* Ratings and Submit */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div className="space-y-1 text-sm">
                 <label htmlFor="ratings" className="block text-gray-600">Ratings</label>
                 <input
@@ -245,6 +244,17 @@ const AddProductForm = ({
                   min={0}
                   placeholder="Rating (max 5)"
                   required
+                />
+              </div>
+              <div className="space-y-1 text-sm">
+                <label htmlFor="ratings" className="block text-gray-600">Product Code</label>
+                <input
+                  className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
+                  name="productCode"
+                  id="productCode"
+                  type="text"
+                  placeholder="Product Code"
+                  
                 />
               </div>
 

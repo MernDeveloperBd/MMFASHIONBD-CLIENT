@@ -24,6 +24,7 @@ const AddProduct = () => {
     const form = e.target;
     const title = form.title.value.trim();
     const price = parseFloat(form.price.value) || 0;
+    const productCode = form.productCode.value;
     const oldPrice = form.discountPrice.value ? parseFloat(form.discountPrice.value) : null;
     const quantity = parseInt(form.quantity.value) || 0;
     const ratings = parseInt(form.ratings.value) || 0;
@@ -51,6 +52,7 @@ const AddProduct = () => {
         title,
         price,
         oldPrice,
+        productCode,
         category,
         subCategory,
         popular,

@@ -8,7 +8,6 @@ const SellerOrderDataRow = ({ orderData, refetch }) => {
   const axiosSecure = UseAxiosSecure();
   const {
     customer,
-    title,
     price,
     quantity,
     address,

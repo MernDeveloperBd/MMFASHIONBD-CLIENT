@@ -14,8 +14,8 @@ const Navbar = () => {
 
   const menuLinkClass = ({ isActive }) =>
     isActive
-      ? "text-lime-600 font-semibold transition"
-      : "text-gray-700 hover:text-lime-600 transition";
+      ? "text-violet-700 font-semibold transition"
+      : "text-gray-700 hover:text-violet-500 transition";
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -29,15 +29,15 @@ const Navbar = () => {
   );
 
   return (
-    <div className='fixed w-full bg-white z-10 shadow-sm'>
+    <div className='fixed w-full bg-white opacity-95 z-50 shadow-sm'>
       <div className='py-3 border-b border-gray-300'>
         <Container>
           <div className='flex items-center justify-between'>
 
             {/* Logo */}
-            <Link to='/' className="flex items-center gap-1 flex-shrink-0 text-xl font-bold text-lime-700">
-              <img src="https://i.ibb.co/bRLWLq9C/women-cloth-sell-Misam-marifa-fashion-world.jpg" alt="logo" className="w-8 h-8 md:w-6 md:h-6" title="Haramain Khushbo" />
-              <span className="text-2xl hidden md:block">MM Fashion BD</span>
+            <Link to='/' className="flex items-center gap-1 flex-shrink-0 text-xl font-bold ">
+              <img src="https://i.ibb.co/bRLWLq9C/women-cloth-sell-Misam-marifa-fashion-world.jpg" alt="logo" className="w-8 h-8 md:w-10 md:h-10 border rounded-full shadow shadow-green-300" title="Haramain Khushbo" />
+              <span className="text-2xl hidden md:block text-violet-700">MM Fashion World</span>
             </Link>
 
             {/* Desktop Menu */}
@@ -46,6 +46,22 @@ const Navbar = () => {
             </div>
 
             {/* Avatar & Dropdown */}
+           
+                 {/* Cart Link */}
+                    {
+                      cartCount > 0 && <Link to="/cart" className="flex items-center gap-1 px-3 py-2 hover:bg-lime-100 primary_text transition" onClick={() => setIsOpen(false)}>
+                      <span>Cart</span>
+                      <div className="flex relative">
+                        <FaShoppingCart className="text-xl "/>
+                      {cartCount > 0 && (
+                        <span className="ml-0.5 bg-green-600 text-white rounded-full w-4 h-4 flex justify-center items-center px-2 text-xs font-bold absolute -top-2 -right-2">
+                          {cartCount}
+                        </span>
+                      )}
+                      </div>
+                    </Link>
+                    }
+           
             <div className='relative'>
               <div
                 onClick={toggleDropdown}
@@ -67,27 +83,12 @@ const Navbar = () => {
                     <div className="flex flex-col gap-1 md:hidden border-b border-gray-200 px-4 py-3">
                       {desktopMenu}
                     </div>
-
-                    {/* Cart Link */}
-                    {
-                      cartCount > 0 && <Link to="/cart" className="flex items-center gap-2 px-3 py-2 hover:bg-lime-100 text-lime-700 font-semibold transition" onClick={() => setIsOpen(false)}>
-                      <FaShoppingCart />
-                      <span>Cart</span>
-                      {cartCount > 0 && (
-                        <span className="ml-1 inline-block bg-lime-600 text-white rounded-full px-2 text-xs font-bold">
-                          {cartCount}
-                        </span>
-                      )}
-                    </Link>
-                    }
-                    
-
                     {/* Auth Links */}
                     <div className="flex flex-col px-2 py-3 space-y-1">
                       {user ? (
                         <>
                           <p
-                            className="block px-3 py-2 rounded-md text-lime-700 font-semibold transition"
+                            className="block px-3 py-2 rounded-md text-white font-semibold transition bg-green-700"
                             onClick={() => setIsOpen(false)}
                           >
                             {user?.displayName}

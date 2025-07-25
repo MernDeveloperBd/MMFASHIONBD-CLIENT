@@ -17,6 +17,7 @@ const PurchaseModal = ({ closeModal, isOpen, setIsOpen, product, refetch }) => {
   const navigate = useNavigate();
   const axiosSecure = UseAxiosSecure();
   const [totalQuantity, setTotalQuantity] = useState(1);
+  const [productDetails, setProductDetails] = useState('');
   const [address, setAddress] = useState('');
   const [mobile, setMobile] = useState('');
 
@@ -35,6 +36,7 @@ const PurchaseModal = ({ closeModal, isOpen, setIsOpen, product, refetch }) => {
   };
 
   const handlePurchase = async () => {
+    if (!productDetails.trim()) return toast.error("Product Details is required");
     if (!address.trim()) return toast.error("Address is required");
     if (!mobile.trim()) return toast.error("Mobile number is required");
 
@@ -44,6 +46,7 @@ const PurchaseModal = ({ closeModal, isOpen, setIsOpen, product, refetch }) => {
         email: user?.email || "N/A",
         userImage: user?.photoURL || "",
         phone: mobile.trim(),
+        productDetails: productDetails.trim(),
         address: address.trim(),
       },
       productId: product?._id,
@@ -77,7 +80,7 @@ const PurchaseModal = ({ closeModal, isOpen, setIsOpen, product, refetch }) => {
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={closeModal}>
+      <Dialog as="div" className="relative z-10 " onClose={closeModal}>
         <TransitionChild
           as={Fragment}
           enter="ease-out duration-300"
@@ -101,7 +104,7 @@ const PurchaseModal = ({ closeModal, isOpen, setIsOpen, product, refetch }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="w-full max-w-lg transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <DialogPanel className="w-full max-w-lg transform overflow-hidden rounded-2xl mt-16 bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <DialogTitle
                   as="h3"
                   className="text-xl font-semibold text-center text-gray-800 mb-4"
@@ -124,34 +127,48 @@ const PurchaseModal = ({ closeModal, isOpen, setIsOpen, product, refetch }) => {
                 </div>
 
                 <p className='pb-2'>
-                  <span className='font-bold'>Courier charge:</span> <span className='text-green-700'>80 TK</span> (Only Khulna) And <span className='text-green-700'>150 TK</span> (Whole Bangladesh)
+                  <span className='font-bold'>Courier charge:</span> <span className='text-green-700'>80 TK</span> (Inside Dhaka City) And <span className='text-green-700'>150 TK</span> (Whole Bangladesh)
                 </p>
+                <div className='flex flex-col md:flex-row gap-2'>
 
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
-                  <input
-                    type="number"
-                    min="1"
-                    max={product?.quantity}
-                    value={totalQuantity}
-                    onChange={(e) => handleQuantity(Number(e.target.value))}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                  />
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+                    <input
+                      type="number"
+                      min="1"
+                      max={product?.quantity}
+                      value={totalQuantity}
+                      onChange={(e) => handleQuantity(Number(e.target.value))}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                    />
+                  </div>
+
+                  <div className="mb-4 w-full">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+                    <input
+                      type="tel"
+                      name="mobile"
+                      placeholder="Enter your mobile number"
+                      value={mobile}
+                      onChange={(e) => setMobile(e.target.value)}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                      required
+                    />
+                  </div>
                 </div>
 
                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
-                  <input
-                    type="tel"
-                    name="mobile"
-                    placeholder="Enter your mobile number"
-                    value={mobile}
-                    onChange={(e) => setMobile(e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Product Details (extra)</label>
+                  <textarea
+                    rows={3}
+                    name="productDetails"
+                    placeholder="Enter your Product Details: exp: color, size,etc"
+                    value={productDetails}
+                    onChange={(e) => setProductDetails(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                     required
                   />
                 </div>
-
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Shipping Address</label>
                   <textarea

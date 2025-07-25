@@ -11,7 +11,7 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3">Quick Links</h2>
           <ul className="space-y-2">
             <li><Link to="/" className="link link-hover">Home</Link></li>
-            <li><Link to="/about-us" className="link link-hover">About Us</Link></li>
+            <li><Link to="/about" className="link link-hover">About Us</Link></li>
             <li><Link to="/collections" className="link link-hover">Collections</Link></li>
             <li><Link to="/contact" className="link link-hover">Contact</Link></li>
           </ul>
@@ -38,7 +38,7 @@ const Footer = () => {
         {/* Company Info */}
         <div>
           <h2 className="text-lg font-bold mb-3">Company</h2>
-          <p>We provide premium quality Attar and Islamic products with love and care for all.</p>
+          <p>আমরা নিয়ে এসেছি আধুনিক ফ্যাশনের সাথে মানানসই কাপড় ও এক্সক্লুসিভ কালেকশন — যা আপনাকে দেবে আলাদা লুক ও আত্মবিশ্বাস। কোয়ালিটিতে আপস নয়, দামে সেরা অফার!</p>
         </div>
       </div>
 
@@ -46,7 +46,7 @@ const Footer = () => {
       <div className="container mx-auto border-t border-gray-300 mt-8 pt-4 flex flex-col md:flex-row justify-between items-center text-sm text-center gap-2">
         <p>
           © {new Date().getFullYear()} — All rights reserved by{" "}
-          <Link to="/" className="font-semibold hover:underline">MM Fashion BD</Link>
+          <Link to="/" className="font-semibold hover:underline">MM Fashion World</Link>
         </p>
         <p>
           Designed by{" "}
@@ -54,7 +54,7 @@ const Footer = () => {
             href="https://www.instagram.com/misammehzabin/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-green-600 hover:text-green-700 font-semibold"
+            className="primary_text "
           >
             Misam Mehzabin
           </a>

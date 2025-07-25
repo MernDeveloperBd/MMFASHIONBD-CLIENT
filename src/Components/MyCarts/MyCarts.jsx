@@ -7,26 +7,24 @@ const MyCart = () => {
   const { cartItems, loading, removeFromCart, totalPrice } = useCart();
   const navigate = useNavigate();
 
-  // কুপন কোডের জন্য স্টেট
   const [couponCode, setCouponCode] = useState("");
   const [couponError, setCouponError] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
 
-  // ৩০০০ টাকার উপরে অটো ডিসকাউন্ট (১০%)
+
   const discountThreshold = 3000;
   const discountPercent = 10;
 
-  // কুপন কোড (যেমন: SAVE20), তোমার মতো করে পরিবর্তন করতে পারো
+
   const validCoupons = {
-    SAVE20: 20, // ২০% ডিসকাউন্ট
-    OFFER10: 10, // ১০% ডিসকাউন্ট
+    /* SAVE15: 15,
+    OFFER7: 7, */
   };
 
-  // অটো ডিসকাউন্ট চেক (totalPrice > ৩০০০)
   const autoDiscount =
     totalPrice >= discountThreshold ? (totalPrice * discountPercent) / 100 : 0;
 
-  // ইউজার কুপন কোড অ্যাপ্লাই করলে
+
   const [couponDiscount, setCouponDiscount] = useState(0);
 
   const handleApplyCoupon = () => {
@@ -41,9 +39,6 @@ const MyCart = () => {
       setCouponApplied(true);
     }
   };
-
-  // ফাইনাল প্রাইস হিসাব
-  // এখানে ডিসকাউন্ট গুলো যোগ হবে না একসাথে, ইউজার কুপন দিলে সেটা, নাহলে অটো ডিসকাউন্ট।
   const finalDiscount = couponApplied ? couponDiscount : autoDiscount;
   const finalPrice = totalPrice - finalDiscount;
 
@@ -98,12 +93,13 @@ const MyCart = () => {
               />
               <button
                 onClick={handleApplyCoupon}
-                disabled={couponApplied || !couponCode.trim()}
-                className={`px-4 py-2 rounded text-white ${
-                  couponApplied
+                disabled={
+                  couponApplied || !couponCode.trim() || !validCoupons[couponCode.toUpperCase()]
+                }
+                className={`px-4 py-2 rounded text-white ${couponApplied
                     ? "bg-green-600 cursor-not-allowed"
-                    : "bg-blue-600 hover:bg-blue-700"
-                } transition`}
+                    : "bg-gray-600 hover:bg-green-700"
+                  } transition`}
               >
                 {couponApplied ? "Applied" : "Apply"}
               </button>

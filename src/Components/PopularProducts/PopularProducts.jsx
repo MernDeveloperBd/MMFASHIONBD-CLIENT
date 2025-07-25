@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import LoadingSpinner from "../Shared/LoadingSpinner";
-import {categories} from "../../Components/filtersData"; // updated categories with catValue & catName
+import { categories } from "../../Components/filtersData"; // catValue & catName যুক্ত
 
 const PopularProducts = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -13,11 +13,11 @@ const PopularProducts = () => {
     queryKey: ["popularProducts"],
     queryFn: async () => {
       const { data } = await axios(`${import.meta.env.VITE_API_URL}/products`);
-      return data.filter((product) => product.popular === "true");
+      // এখানে ভুল ছিল — "true" (string) না দিয়ে, boolean true দিয়ে চেক করতে হবে
+      return data.filter((product) => product.popular === true);
     },
   });
 
-  // Shuffle function to randomize products
   const shuffleArray = (array) => {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -27,7 +27,6 @@ const PopularProducts = () => {
     return shuffled;
   };
 
-  // Filter + shuffle products
   const filteredProducts = shuffleArray(
     allProducts.filter((product) => {
       if (selectedCategory === "all") return true;
@@ -38,7 +37,7 @@ const PopularProducts = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="container mx-auto px-2">
+    <div className="container mx-auto px-2 py-8">
       <h1 className="text-xl font-bold mb-6">Popular Products</h1>
 
       {/* Category Filter */}
@@ -52,9 +51,9 @@ const PopularProducts = () => {
                 onClick={() => setSelectedCategory(cat.catValue)}
                 className={`px-4 py-2 rounded-full border font-medium ${
                   selectedCategory === cat.catValue
-                    ? "bg-blue-600 text-white"
+                    ? "cat_tab_bg_select"
                     : "bg-white text-gray-700"
-                } hover:bg-blue-500 hover:text-white transition duration-200`}
+                } cat_tab_hover`}
               >
                 {cat.catName}
               </button>
@@ -65,7 +64,7 @@ const PopularProducts = () => {
         {/* All Products button */}
         <div className="sm:ml-auto sm:flex-shrink-0">
           <Link to="/collections">
-            <button className="btn btn-sm btn_color">All Products</button>
+            <button className="btn btn-sm btn_color">More</button>
           </Link>
         </div>
       </div>
@@ -79,13 +78,17 @@ const PopularProducts = () => {
         ) : (
           filteredProducts.slice(0, 15).map((product) => (
             <Link key={product._id} to={`/product/${product._id}`}>
-              <div className="border rounded-lg p-2 shadow-sm hover:shadow-md transition">
+              <div className="border rounded-lg p-2 shadow-sm hover:shadow-md transition group cursor-pointer overflow-hidden">
                 <img
                   src={product.image}
-                  alt={product.name}
-                  className="w-full h-48 object-cover rounded-md mb-4"
+                  alt={product.title}
+                  className="w-full h-48 object-cover rounded-md mb-4 group-hover:scale-105 transition-transform duration-300 "
                 />
-                 <h2 className="text-base font-semibold">{product?.title?.length > 20 ? product?.title.slice(0, 20) + '...' : product?.title}</h2>
+                <h2 className="text-base font-semibold">
+                  {product?.title?.length > 20
+                    ? product?.title.slice(0, 20) + "..."
+                    : product?.title}
+                </h2>
                 <p className="text-sm text-gray-500 capitalize">{product.category}</p>
                 <div className="flex items-center gap-1 my-2">
                   {[...Array(5)].map((_, i) =>

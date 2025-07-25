@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const SmallAdBanner = ({ title, description, buttonText }) => {
   return (
     <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg p-4 flex items-center justify-between max-w-md mx-auto shadow-lg">
@@ -5,9 +7,11 @@ const SmallAdBanner = ({ title, description, buttonText }) => {
         <h3 className="text-lg font-semibold mb-1">{title}</h3>
         <p className="text-sm opacity-90">{description}</p>
       </div>
+      <Link to='/collections'>
       <button className="bg-white text-blue-600 font-bold px-4 py-2 rounded hover:bg-gray-100 transition">
         {buttonText}
       </button>
+      </Link>
     </div>
   );
 };

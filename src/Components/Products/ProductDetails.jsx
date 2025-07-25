@@ -40,13 +40,13 @@ const ProductDetails = () => {
   const closeModal = () => setIsOpen(false);
 
   useEffect(() => {
-  if (product?._id) {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/reviews?productId=${product._id}`)
-      .then((res) => setReviews(res.data))
-      .catch((err) => console.error("Error fetching reviews:", err));
-  }
-}, [product]);
+    if (product?._id) {
+      axios
+        .get(`${import.meta.env.VITE_API_URL}/reviews?productId=${product._id}`)
+        .then((res) => setReviews(res.data))
+        .catch((err) => console.error("Error fetching reviews:", err));
+    }
+  }, [product]);
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
@@ -111,13 +111,30 @@ const ProductDetails = () => {
 
   return (
     <div>
+        <div
+          className="hero container mx-auto  h-[190px]"
+          style={{
+             backgroundImage: `url(${imageArray[selectedImage]})`,
+          }}
+        >
+          <div className="hero-overlay"></div>
+          <div className="hero-content text-neutral-content text-center">
+            <div className="max-w-md">
+              <h1 className="mb-5 text-2xl md:text-4xl font-bold ">PRODUCT DETAILS</h1>
+              <p className="mb-3 text-xl">
+                {product?.title}
+              </p>
+            </div>
+          </div>
+        </div>
+    
       {/* Product Details */}
       <div className="container mx-auto px-2 md:px-4 py-2 md:py-6 grid md:grid-cols-2 gap-10">
         <div>
           <img
             src={imageArray[selectedImage]}
             alt={product.title}
-            className="w-full h-[300px] sm:h-[360px] md:h-[400px] object-cover rounded-xl shadow-md"
+            className="w-full h-[300px] sm:h-[360px] md:h-[440px] object-cover rounded-xl "
           />
           <div className="flex gap-4 mt-4">
             {imageArray.map((img, idx) => (
@@ -126,18 +143,18 @@ const ProductDetails = () => {
                 src={img}
                 alt={`thumb-${idx}`}
                 onClick={() => setSelectedImage(idx)}
-                className={`w-20 h-20 object-cover cursor-pointer rounded-md border-2 ${
-                  selectedImage === idx ? "border-blue-500" : "border-transparent"
-                }`}
+                className={`w-20 h-20 object-cover cursor-pointer rounded border-2 ${selectedImage === idx ? "border-blue-500" : "border-transparent"
+                  }`}
               />
             ))}
           </div>
         </div>
 
-        <div className="flex flex-col max-h-[400px]">
+        <div className="flex flex-col min-h-[280px]">
           <div className="space-y-4 flex-1">
             <h2 className="text-2xl font-bold text-gray-800">{product.title}</h2>
             <p className="text-sm text-gray-500">{product.category}</p>
+            <p className="text-sm text-gray-500"> {product.productCode ? <>Code: {product.productCode}</> : ''}</p>
 
             <div className="flex items-center gap-1">
               {[...Array(5)].map((_, i) =>
@@ -174,15 +191,13 @@ const ProductDetails = () => {
               </span>
               {product.quantity > 0 && (product.quantity > 1 ? " Pieces left" : " Piece left")}
             </p>
-
-            {/* <p className="text-gray-600 leading-relaxed">{product.description}</p> */}
             <div className="space-y-1 text-gray-600 leading-relaxed">
-  {product.description
-    ?.split(/\r?\n|।/)
-    .map((line, index) =>
-      line.trim() ? <p key={index}>{line.trim()}</p> : null
-    )}
-</div>
+              {product.description
+                ?.split(/\r?\n|।/)
+                .map((line, index) =>
+                  line.trim() ? <p key={index}>{line.trim()}</p> : null
+                )}
+            </div>
           </div>
 
           <div className="flex flex-col gap-6 mt-4">
@@ -190,11 +205,10 @@ const ProductDetails = () => {
               <button
                 disabled={product.quantity <= 0}
                 onClick={handleAddToCart}
-                className={`px-6 py-2 rounded-lg transition duration-200 ${
-                  product.quantity <= 0
-                    ? "bg-gray-400 cursor-not-allowed text-white"
-                    : "bg-blue-600 hover:bg-blue-700 text-white"
-                }`}
+                className={`px-6 py-2 rounded-lg transition duration-200 ${product.quantity <= 0
+                  ? "bg-gray-400 cursor-not-allowed text-white"
+                  : "shop_now"
+                  }`}
               >
                 Add to Cart
               </button>
@@ -208,11 +222,10 @@ const ProductDetails = () => {
                   }
                 }}
                 disabled={product.quantity <= 0}
-                className={`px-6 py-2 rounded-lg transition duration-200 ${
-                  product.quantity <= 0
-                    ? "bg-gray-400 cursor-not-allowed text-white"
-                    : "bg-green-600 hover:bg-green-700 text-white"
-                }`}
+                className={`px-6 py-2 rounded-lg transition duration-200 ${product.quantity <= 0
+                  ? "bg-gray-400 cursor-not-allowed text-white"
+                  : "bg-green-600 hover:bg-green-700 text-white"
+                  }`}
               >
                 Buy Now
               </button>
@@ -272,7 +285,7 @@ const ProductDetails = () => {
 
       {/* Customer Reviews */}
       <div className="container mx-auto px-2 md:px-4 pb-8 md:pb-16">
-        <div className="mt-10 border-t pt-8">
+        <div className="mt-6 border-t pt-6">
           <h3 className="text-2xl font-semibold text-gray-800 mb-6">Customer Reviews</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

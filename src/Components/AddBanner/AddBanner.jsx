@@ -52,7 +52,7 @@ const AddBanner = () => {
                 <p className="text-2xl font-extrabold text-blue-700">TK {product.price}</p>
                 <Link
                   to={`/product/${product._id}`}
-                  className="inline-block mt-3 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700 transition"
+                  className="inline-block mt-3 shop_now shadow  "
                 >
                   Shop Now
                 </Link>

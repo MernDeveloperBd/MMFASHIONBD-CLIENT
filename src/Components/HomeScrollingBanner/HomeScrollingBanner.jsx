@@ -28,8 +28,6 @@ const ProductHeroBannerWithSideImages = () => {
       const shuffled = [...products].sort(() => 0.5 - Math.random());
       setBannerProducts(shuffled.slice(0, 4));
 
-      // ২. আলাদা আলাদা ক্যাটেগরি থেকে ৪ টি প্রডাক্ট সিলেক্ট করব ডানপাশের জন্য
-      // (প্রতিটি ক্যাটেগরি থেকে ১ টি)
       const categoriesSet = new Set();
       const sideSelection = [];
 
@@ -75,7 +73,7 @@ const ProductHeroBannerWithSideImages = () => {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/50 flex flex-col justify-center px-6 sm:px-12">
-                    <h2 className="text-white text-2xl sm:text-4xl font-bold leading-tight drop-shadow-md">
+                    <h2 className="text-white text-xl sm:text-2xl font-bold leading-tight drop-shadow-md">
                       {product.title.length > 50
                         ? product.title.slice(0, 50) + "..."
                         : product.title}
@@ -86,7 +84,7 @@ const ProductHeroBannerWithSideImages = () => {
                     <div className="mt-4">
                       <Link
                         to={`/product/${product._id}`}
-                        className=" bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-semibold transition"
+                        className=" shop_now"
                       >
                         Shop Now
                       </Link>

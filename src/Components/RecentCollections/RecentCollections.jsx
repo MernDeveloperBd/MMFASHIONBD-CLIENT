@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import LoadingSpinner from "../Shared/LoadingSpinner";
-import {categories} from "../..//Components/filtersData";
+import { categories } from "../..//Components/filtersData";
 
 const RecentCollections = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -33,7 +33,9 @@ const RecentCollections = () => {
     allProducts
       .filter((product) => {
         if (selectedCategory === "all") return true;
-        return product.category?.toLowerCase() === selectedCategory.toLowerCase();
+        return (
+          product.category?.toLowerCase() === selectedCategory.toLowerCase()
+        );
       })
       .sort((a, b) => {
         const dateA = new Date(a.createdAt || a.uploadDate || 0);
@@ -56,11 +58,11 @@ const RecentCollections = () => {
               <button
                 key={cat.catValue}
                 onClick={() => setSelectedCategory(cat.catValue)}
-                className={`px-4 py-2 rounded-full border font-medium ${
+                className={`px-4 py-1.5 rounded-full border font-medium ${
                   selectedCategory === cat.catValue
-                    ? "bg-blue-600 text-white"
+                    ? "cat_tab_bg_select"
                     : "bg-white text-gray-700"
-                } hover:bg-blue-500 hover:text-white transition duration-200`}
+                } cat_tab_hover`}
               >
                 {cat.catName}
               </button>
@@ -71,7 +73,7 @@ const RecentCollections = () => {
         {/* All Products button */}
         <div className="sm:ml-auto sm:flex-shrink-0">
           <Link to="/collections">
-            <button className="btn btn-sm btn_color">All Products</button>
+            <button className="btn btn-sm btn_color">More</button>
           </Link>
         </div>
       </div>
@@ -83,29 +85,70 @@ const RecentCollections = () => {
             No products found in this category.
           </p>
         ) : (
-          filteredProducts.map((product) => (
-            <Link key={product._id} to={`/product/${product._id}`}>
-              <div className="border rounded-lg p-2 shadow-sm hover:shadow-md transition">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-48 object-cover rounded-md mb-4"
-                />
-                <h2 className="text-base font-semibold">{product?.title?.length > 20 ? product?.title.slice(0, 20) + '...' : product?.title}</h2>
-                <p className="text-sm text-gray-500 capitalize">{product.category}</p>
-                <div className="flex items-center gap-1 my-2">
-                  {[...Array(5)].map((_, i) =>
-                    i < parseInt(product.ratings) ? (
-                      <FaStar key={i} className="text-yellow-400 text-sm" />
-                    ) : (
-                      <FaRegStar key={i} className="text-gray-400 text-sm" />
-                    )
+          filteredProducts.map((product) => {
+            const hasDiscount =
+              product.oldPrice && product.oldPrice > product.price;
+            const discountPercent = hasDiscount
+              ? Math.round(
+                  ((product.oldPrice - product.price) / product.oldPrice) * 100
+                )
+              : 0;
+
+            return (
+              <Link key={product._id} to={`/product/${product._id}`}>
+                <div className="relative border rounded-lg p-2 shadow-sm hover:shadow-md transition group cursor-pointer overflow-hidden">
+                  {/* Badges */}
+                  {product.popular && (
+                    <div className="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded-md z-10">
+                      Popular
+                    </div>
                   )}
+                  {hasDiscount && (
+                    <div className="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded-md z-10">
+                      -{discountPercent}%
+                    </div>
+                  )}
+
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-48 object-cover rounded-md mb-4 group-hover:scale-105 transition-transform duration-300 "
+                  />
+                  <h2 className="text-base font-semibold">
+                    {product?.title?.length > 20
+                      ? product?.title.slice(0, 20) + "..."
+                      : product?.title}
+                  </h2>
+                  <p className="text-sm text-gray-500 capitalize">
+                    {product.category}
+                  </p>
+
+                  {/* Rating */}
+                  <div className="flex items-center gap-1 my-2">
+                    {[...Array(5)].map((_, i) =>
+                      i < parseInt(product.ratings) ? (
+                        <FaStar key={i} className="text-yellow-400 text-sm" />
+                      ) : (
+                        <FaRegStar key={i} className="text-gray-400 text-sm" />
+                      )
+                    )}
+                  </div>
+
+                  {/* Price */}
+                 <div className="flex gap-1 items-center">
+                   <p className="text-base font-bold text-blue-700">
+                    TK {product.price}
+                  </p>
+                  {hasDiscount && (
+                    <p className="text-sm line-through text-red-600">
+                      TK {product.oldPrice}
+                    </p>
+                  )}
+                 </div>
                 </div>
-                <p className="text-base font-bold text-blue-700">TK {product.price}</p>
-              </div>
-            </Link>
-          ))
+              </Link>
+            );
+          })
         )}
       </div>
     </div>

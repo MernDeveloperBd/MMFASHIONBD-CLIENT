@@ -35,7 +35,7 @@ const[role, isLoading] = useRole()
             <Link to='/'>
               <img
                 // className='hidden md:block'
-                src='https://i.ibb.co/PZntnvzy/Haramain-khushbo.jpg'
+                src='https://i.ibb.co/bRLWLq9C/women-cloth-sell-Misam-marifa-fashion-world.jpg'
                 alt='logo'
                 width='50'
                 height='50'
@@ -60,11 +60,11 @@ const[role, isLoading] = useRole()
       >
         <div>
           <div>
-            <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 mx-auto'>
+            <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-gray-100 mx-auto'>
               <Link to='/'>
                 <img
                   // className='hidden md:block'
-                  src="https://i.ibb.co/PZntnvzy/Haramain-khushbo.jpg"
+                  src="https://i.ibb.co/bRLWLq9C/women-cloth-sell-Misam-marifa-fashion-world.jpg"
                   alt='logo'
                   className='w-[100%] h-24'
                 />

@@ -5,7 +5,6 @@ import PopularProducts from "../PopularProducts/PopularProducts";
 import RecentCollections from "../RecentCollections/RecentCollections";
 import AddBanner from "../AddBanner/AddBanner";
 import HomeScrollingBanner from "../HomeScrollingBanner/HomeScrollingBanner";
-import OfferBanner from "../OfferBanner/OfferBanner";
 import SmallAddBanner from "../SmallAddBanner/SmallAddBanner";
 import HorizontalProductScroll from "../HorizontalProductScroll/HorizontalProductScroll";
 import SmallBanner1 from "../SmallAddBanner/SmallBanner1";
@@ -26,7 +25,7 @@ const Home = () => {
             <PopularProducts></PopularProducts>
             <HorizontalProductScroll></HorizontalProductScroll>
             <AddBanner></AddBanner>
-            <OfferBanner />
+            {/* <OfferBanner /> */}
 
 
         </div>

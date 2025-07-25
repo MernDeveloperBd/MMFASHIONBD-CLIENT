@@ -3,6 +3,7 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from "react-icons/f
 import { motion } from "framer-motion";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const ContactUsPage = () => {
   const [formData, setFormData] = useState({
@@ -42,7 +43,10 @@ const ContactUsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 px-4 py-16 flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-[#7333db50] to-[#7333db1f] px-4 py-16 flex items-center justify-center">
+      <Helmet>
+              <title>Contact Us || MM Fashion BD</title>
+            </Helmet>
       <div className="max-w-6xl w-full bg-white/40 backdrop-blur-md rounded-2xl shadow-xl p-8 md:p-16 grid md:grid-cols-2 gap-10 border border-white/30">
 
         {/* Left Side - Contact Info */}
@@ -52,7 +56,7 @@ const ContactUsPage = () => {
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
-          <h2 className="text-4xl font-bold text-gray-900">Get in Touch</h2>
+          <h2 className="text-4xl primary_text">Get in Touch</h2>
           <p className="text-gray-800 text-lg">
             We had love to hear from you! Whether you have a question about features, pricing, or anything else — our team is ready to answer all your questions.
           </p>
@@ -60,15 +64,15 @@ const ContactUsPage = () => {
           <div className="space-y-4 text-gray-800 text-base">
             <div className="flex items-center gap-3">
               <FaMapMarkerAlt className="text-xl text-[#4d7c0f]" />
-              <span>Mollah Complex, Sher-E-bangla road, Nirala More, Khulna</span>
+              <span>Nawabgonj,Dhaka-1320</span>
             </div>
             <div className="flex items-center gap-3">
               <FaPhone className="text-xl text-[#4d7c0f]" />
-              <span> +880 1793 000111</span>
+              <span> +880 1749 889595</span>
             </div>
             <div className="flex items-center gap-3">
               <FaEnvelope className="text-xl text-[#4d7c0f]" />
-              <span>haramainkhusbu@gmail.com</span>
+              <span>marifamisam@gmail.com</span>
             </div>
           </div>
         </motion.div>
@@ -138,7 +142,7 @@ const ContactUsPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2 bg-[#4d7c0f] hover:bg-[#3e650a] transition-all text-white font-semibold py-3 rounded-xl shadow-md"
+            className="contact_btn"
           >
             {loading ? "Sending..." : "Send Message"} <FaPaperPlane />
           </button>
