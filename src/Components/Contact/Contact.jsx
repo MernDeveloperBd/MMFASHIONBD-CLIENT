@@ -45,7 +45,7 @@ const ContactUsPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#7333db50] to-[#7333db1f] px-4 py-16 flex items-center justify-center">
       <Helmet>
-              <title>Contact Us || MM Fashion BD</title>
+              <title>Contact Us - MM Fashion BD | We are Here to Help</title>
             </Helmet>
       <div className="max-w-6xl w-full bg-white/40 backdrop-blur-md rounded-2xl shadow-xl p-8 md:p-16 grid md:grid-cols-2 gap-10 border border-white/30">
 

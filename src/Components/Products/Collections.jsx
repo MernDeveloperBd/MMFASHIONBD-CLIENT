@@ -44,7 +44,7 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
 
   return (
     <div className="flex justify-center gap-2 mt-6 items-center">
-
+      
       <button
         onClick={() => currentPage > 1 && onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
@@ -150,7 +150,7 @@ const Collections = () => {
   return (
     <div className="container mx-auto px-2 py-8">
       <Helmet>
-        <title>All Products || MM Fashion BD</title>
+        <title>Shop Collections - Trendy Outfits for All | MM Fashion BD</title>
       </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
         {/* Sidebar */}
@@ -272,7 +272,7 @@ const Collections = () => {
             <input
               type="text"
               placeholder="Search by title..."
-              className="w-full sm:w-72 border rounded-md px-4 py-2 focus:outline-blue-500"
+              className="w-full sm:w-72 border rounded-md px-4 py-2 focus:outline-violet-500"
               value={searchTerm}
               onChange={(e) => {
                 setSearchTerm(e.target.value);
@@ -284,10 +284,10 @@ const Collections = () => {
               <h2 className="text-sm sm:text-base text-gray-600">
                 Showing {currentProducts.length} of <span className="font-semibold">{filteredProducts.length}</span> Products
               </h2>
-              <div className="flex ">
+              <div className="flex gap-1">
                 <button
                   onClick={() => setIsGridView(true)}
-                  className={`p-2 rounded-md hover:bg-blue-500 hover:text-white transition ${isGridView ? "cat_tab_bg_select" : "bg-white"
+                  className={`p-2 rounded-md hover:bg-violet-700 hover:text-white transition ${isGridView ? "cat_tab_bg_select" : "bg-white"
                     }`}
                   aria-label="Grid View"
                 >
@@ -295,7 +295,7 @@ const Collections = () => {
                 </button>
                 <button
                   onClick={() => setIsGridView(false)}
-                  className={`p-2 rounded-md hover:bg-blue-500 hover:text-white transition ${!isGridView ? "cat_tab_bg_select" : "bg-white"
+                  className={`p-2 rounded-md hover:bg-violet-700 hover:text-white transition ${!isGridView ? "cat_tab_bg_select" : "bg-white"
                     }`}
                   aria-label="List View"
                 >

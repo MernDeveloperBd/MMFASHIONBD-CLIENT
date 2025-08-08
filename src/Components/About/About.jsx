@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div className="container mx-auto px-4 py-10">
       <Helmet>
-        <title>About || MM Fashion BD</title>
+        <title>About - MM Fashion BD | Passion for Fashion in Bangladesh</title>
       </Helmet>
       {/* Header Section */}
       <section className="text-center mb-12">
@@ -20,7 +20,7 @@ const About = () => {
       {/* Image + Story */}
       <section className="flex flex-col lg:flex-row items-center gap-10 mb-16">
         <img
-          src="https://i.ibb.co/bRLWLq9C/women-cloth-sell-Misam-marifa-fashion-world.jpg"
+          src="https://i.ibb.co.com/dw4bR2nX/Misam-Marifa-Fashion-World.png"
           alt="Store"
           className="rounded-lg shadow-lg w-full md:w-1/2 h-80 md:h-[440px]"
         />
@@ -66,7 +66,7 @@ const About = () => {
           “স্বপ্ন দেখুন, স্টাইলের সঙ্গে বাঁচুন।”
         </p>
         <Link to="/collections">
-          <button className="btn bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-md">
+          <button className="shop_now">
             Shop Now
           </button>
         </Link>

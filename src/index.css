@@ -17,7 +17,7 @@
   @apply bg-violet-600 hover:bg-violet-700 text-white px-6 py-2 rounded-md font-semibold transition
 }
 .cat_tab_bg_select{
-  @apply bg-violet-600 text-white
+  @apply bg-violet-500 text-white
 }
 .cat_tab_hover{
   @apply hover:bg-violet-700 hover:text-white transition duration-200

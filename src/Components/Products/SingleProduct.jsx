@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import PropTypes from 'prop-types';
-import { Helmet } from "react-helmet-async";
 
 const SingleProduct = ({ product }) => {
   const { _id, title, price, oldPrice, category, ratings, image, popular } = product;
@@ -13,10 +12,6 @@ const SingleProduct = ({ product }) => {
 
   return (
     <Link to={`/product/${_id}`}>
-      <Helmet>
-        <title>{title} || MM Fashion BD</title>
-      </Helmet>
-
       <div className="group relative">
         {/* Badge: Popular */}
         {popular && (

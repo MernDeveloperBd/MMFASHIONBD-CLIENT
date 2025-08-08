@@ -12,14 +12,11 @@ import UpdateProductForm from '../UpdateProductForm/UpdateProductForm'
 
 import toast from 'react-hot-toast'
 import UseAxiosSecure from '../../../Hooks/UseAxiosSecure'
-import { imageUpload } from '../../../api/utils'
 
 
 const UpdateProductModal = ({ setIsEditModalOpen, isOpen, product, refetch }) => {
   
   const axiosSecure = UseAxiosSecure()
-  const [uploadImage, setUploadImage] = useState({ image: { name: 'Upload Button' } })
-  const [uploadImage1, setUploadImage1] = useState({ image1: { name: 'Upload Button' } })
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async e => {
@@ -33,11 +30,7 @@ const UpdateProductModal = ({ setIsEditModalOpen, isOpen, product, refetch }) =>
     const ratings = parseInt(form.ratings.value)
     const category = form.category.value
     const subCategory = form.subCategory.value
-    const description = form.description.value
-    const image = form.image.files[0]
-    const imageUrl = await imageUpload(image)
-    const image1 = form.image1.files[0]
-    const imageUrl1 = await imageUpload(image1)
+    const description = form.description.value  
 
   
 
@@ -50,8 +43,6 @@ const UpdateProductModal = ({ setIsEditModalOpen, isOpen, product, refetch }) =>
       description,
       quantity,
       ratings,
-      image: imageUrl,
-      image1: imageUrl1,
       
     }
 
@@ -108,10 +99,6 @@ const UpdateProductModal = ({ setIsEditModalOpen, isOpen, product, refetch }) =>
                 <div className='mt-2 w-full'>
                   <UpdateProductForm
                     handleSubmit={handleSubmit}
-                    uploadImage={uploadImage}
-                    setUploadImage={setUploadImage}
-                    uploadImage1={uploadImage1}
-                    setUploadImage1={setUploadImage1}
                     loading={loading}
                     defaultValues={product}
                   />

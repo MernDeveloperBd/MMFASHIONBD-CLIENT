@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { FaStar, FaRegStar, FaFacebook, FaTwitter, FaLinkedin, FaPinterest } from "react-icons/fa";
 import axios from "axios";
@@ -10,6 +10,7 @@ import PurchaseModal from "../Modals/PurchaseModal";
 import { AuthContext } from "../../Components/AuthProvider/AuthProvider";
 import { useCart } from "../../Components/AuthProvider/CartContext";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -111,6 +112,9 @@ const ProductDetails = () => {
 
   return (
     <div>
+       <Helmet>
+              <title>{product?.title} - Stylish & Comfortable | MM Fashion BD</title>
+            </Helmet>
         <div
           className="hero container mx-auto  h-[190px]"
           style={{
@@ -191,6 +195,7 @@ const ProductDetails = () => {
               </span>
               {product.quantity > 0 && (product.quantity > 1 ? " Pieces left" : " Piece left")}
             </p>
+            <p>For know more: <Link to='https://wa.me/8801749889595?text=Hello%2C%20I%20want%20to%20know%20more%20about%20your%20products' target="_blank" className="text-green-700 font-bold">Whatsapp</Link></p>
             <div className="space-y-1 text-gray-600 leading-relaxed">
               {product.description
                 ?.split(/\r?\n|।/)

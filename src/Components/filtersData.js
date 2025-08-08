@@ -17,7 +17,6 @@ export const subCategories = {
     { subCatValue: "unstege3pieces", subCatName: "আনস্টিজ থ্রিপিছ" },
     { subCatValue: "kurti", subCatName: "গাউন ও কুর্তি" },
     { subCatValue: "lehanga&party", subCatName: "লেহেঙ্গা ও পার্টি" },
-    { subCatValue: "westernDress", subCatName: "ওয়েস্টার্ন ড্রেস" },
     { subCatValue: "ladiesTShirt", subCatName: "লেডিস টি-শার্ট" },
     { subCatValue: "comboPackage", subCatName: "কম্বো প্যাকেজ" },
   ],
@@ -27,8 +26,7 @@ export const subCategories = {
     { subCatValue: "unstege3pieces", subCatName: "আনস্টিজ থ্রিপিছ" },
     { subCatValue: "gown&kurti", subCatName: "গাউন ও কুর্তি" },
     { subCatValue: "lehanga&party", subCatName: "লেহেঙ্গা ও পার্টি" },
-    { subCatValue: "westernDress", subCatName: "ওয়েস্টার্ন ড্রেস" },    
-    { subCatValue: "westernDress", subCatName: "ওয়েস্টার্ন ড্রেস" },    
+    { subCatValue: "westernDress", subCatName: "ওয়েস্টার্ন ড্রেস" },   
     { subCatValue: "saree", subCatName: "শাড়ী" },
     { subCatValue: "handPrintsaree", subCatName: "হ্যান্ডপ্রিন্ট শাড়ী" },
     { subCatValue: "indiansaree", subCatName: "ইন্ডিয়ান শাড়ী" },
@@ -39,6 +37,7 @@ export const subCategories = {
     { subCatValue: "skirt-top", subCatName: "স্কারট" },
     { subCatValue: "onePiece", subCatName: "ওয়ান পিছ" },
     { subCatValue: "twoPiece", subCatName: "টু পিছ" },
+    { subCatValue: "threePiece", subCatName: "থ্রি পিছ" }
   ],
   babyProducts: [
     { subCatValue: "all", subCatName: "All" },

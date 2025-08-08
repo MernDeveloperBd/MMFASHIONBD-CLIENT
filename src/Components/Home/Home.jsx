@@ -23,6 +23,7 @@ const Home = () => {
             <Products></Products>
             <SmallBanner1/>
             <PopularProducts></PopularProducts>
+            <SmallBanner1/>
             <HorizontalProductScroll></HorizontalProductScroll>
             <AddBanner></AddBanner>
             {/* <OfferBanner /> */}

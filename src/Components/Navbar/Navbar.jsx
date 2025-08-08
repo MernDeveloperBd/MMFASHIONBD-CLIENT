@@ -36,7 +36,7 @@ const Navbar = () => {
 
             {/* Logo */}
             <Link to='/' className="flex items-center gap-1 flex-shrink-0 text-xl font-bold ">
-              <img src="https://i.ibb.co/bRLWLq9C/women-cloth-sell-Misam-marifa-fashion-world.jpg" alt="logo" className="w-8 h-8 md:w-10 md:h-10 border rounded-full shadow shadow-green-300" title="Haramain Khushbo" />
+              <img src="https://i.ibb.co.com/dw4bR2nX/Misam-Marifa-Fashion-World.png" alt="logo" className="w-8 h-8 md:w-10 md:h-10 border rounded-full shadow shadow-green-300" title="Haramain Khushbo" />
               <span className="text-2xl hidden md:block text-violet-700">MM Fashion World</span>
             </Link>
 

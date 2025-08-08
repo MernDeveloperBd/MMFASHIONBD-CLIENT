@@ -143,8 +143,8 @@ const AddProductForm = ({
                 >
                   {currentSubCategories.length > 0 ? (
                     currentSubCategories.map((sub) => (
-                      <option key={sub.catValue} value={sub.catValue}>
-                        {sub.catName}
+                      <option key={sub.subCatValue} value={sub.subCatValue}>
+                        {sub.subCatName}
                       </option>
                     ))
                   ) : (

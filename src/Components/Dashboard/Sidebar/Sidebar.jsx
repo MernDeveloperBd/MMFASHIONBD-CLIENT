@@ -12,6 +12,7 @@ import AdminMenu from '../AdminMenu/AdminMenu'
 import SellerMenu from '../SellerMenu/SellerMenu'
 import CustomerMenu from '../CustomerMenu/CustomerMenu'
 import useRole from '../../../Hooks/useRole'
+import { Helmet } from 'react-helmet-async'
 
 const Sidebar = () => {
   const { logOut } = useContext(AuthContext)
@@ -30,12 +31,15 @@ const[role, isLoading] = useRole()
     <>
       {/* Small Screen Navbar */}
       <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
+        <Helmet>
+          <title>Dashboard | MM Fashon World</title>
+        </Helmet>
         <div>
           <div className='block cursor-pointer p-4 font-bold'>
             <Link to='/'>
               <img
                 // className='hidden md:block'
-                src='https://i.ibb.co/bRLWLq9C/women-cloth-sell-Misam-marifa-fashion-world.jpg'
+                src='https://i.ibb.co.com/dw4bR2nX/Misam-Marifa-Fashion-World.png'
                 alt='logo'
                 width='50'
                 height='50'
@@ -64,7 +68,7 @@ const[role, isLoading] = useRole()
               <Link to='/'>
                 <img
                   // className='hidden md:block'
-                  src="https://i.ibb.co/bRLWLq9C/women-cloth-sell-Misam-marifa-fashion-world.jpg"
+                  src="https://i.ibb.co.com/dw4bR2nX/Misam-Marifa-Fashion-World.png"
                   alt='logo'
                   className='w-[100%] h-24'
                 />

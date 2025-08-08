@@ -27,17 +27,17 @@ const AddBanner = () => {
   if (isLoading || bannerProducts.length === 0) return null;
 
   return (
-    <section className="container mx-auto px-4 py-10 sm:py-16">
+    <section className="container mx-auto px-4 py-2 sm:py-16">
       <Swiper
         modules={[Navigation, Autoplay]}
         navigation
         autoplay={{ delay: 4500, disableOnInteraction: false }}
         loop
-        className="rounded-xl shadow-lg"
+        className="rounded-xl "
       >
         {bannerProducts.map((product) => (
           <SwiperSlide key={product._id}>
-            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-gradient-to-r from-blue-50 to-white rounded-xl p-8 md:p-12 shadow-md overflow-hidden">
+            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-gradient-to-r from-blue-50 to-white rounded-xl p-4 md:p-8 overflow-hidden">
               
               {/* Left: Text Content */}
               <div className="z-10 space-y-5 max-w-xl md:pl-16">

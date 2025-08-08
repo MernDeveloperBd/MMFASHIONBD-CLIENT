@@ -1,4 +1,4 @@
-import  { useEffect } from "react";
+
 import PropTypes from "prop-types";
 import categories from "../../../api/categories";
 import  subCategories  from "../../../api/subCategories";
@@ -6,25 +6,10 @@ import { TbFidgetSpinner } from "react-icons/tb";
 
 const UpdateProductForm = ({
   handleSubmit,
-  uploadImage,
-  setUploadImage,
-  uploadImage1,
-  setUploadImage1,
   loading,
   defaultValues,
 }) => {
 
-  // যখন defaultValues পরিবর্তিত হয়, তখন আপলোড ইমেজ স্টেট রিসেট করব যাতে প্রিভিউ ঠিক থাকে
-  useEffect(() => {
-    setUploadImage({
-      image: null,
-      url: defaultValues?.image || null,
-    });
-    setUploadImage1({
-      image1: null,
-      url: defaultValues?.image1 || null,
-    });
-  }, [defaultValues, setUploadImage, setUploadImage1]);
 
   return (
     <div>
@@ -124,74 +109,6 @@ const UpdateProductForm = ({
                 className="block w-full h-32 px-4 py-3 border border-lime-300 rounded-md bg-white"
               ></textarea>
             </div>
-
-            {/* Images */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Image 1 */}
-              <div>
-                <label>Update Image</label>
-                <div className="file_upload px-5 py-3 border-4 border-dotted border-gray-300 rounded-lg">
-                  <label>
-                    <input
-                      onChange={(e) =>
-                        setUploadImage({
-                          image: e.target.files[0],
-                          url: URL.createObjectURL(e.target.files[0]),
-                        })
-                      }
-                      type="file"
-                      name="image"
-                      id="image"
-                      accept="image/*"
-                      className="hidden"
-                    />
-                    <div className="bg-lime-500 text-white rounded font-semibold cursor-pointer p-1 px-3">
-                      {uploadImage?.image?.name || "Choose Image"}
-                    </div>
-                  </label>
-                </div>
-                {(uploadImage?.url || defaultValues?.image) && (
-                  <img
-                    className="w-20 mt-2"
-                    src={uploadImage?.url || defaultValues?.image}
-                    alt="Preview"
-                  />
-                )}
-              </div>
-
-              {/* Image 2 */}
-              <div>
-                <label>Update Image 2</label>
-                <div className="file_upload px-5 py-3 border-4 border-dotted border-gray-300 rounded-lg">
-                  <label>
-                    <input
-                      onChange={(e) =>
-                        setUploadImage1({
-                          image1: e.target.files[0],
-                          url: URL.createObjectURL(e.target.files[0]),
-                        })
-                      }
-                      type="file"
-                      name="image1"
-                      id="image1"
-                      accept="image/*"
-                      className="hidden"
-                    />
-                    <div className="bg-lime-500 text-white rounded font-semibold cursor-pointer p-1 px-3">
-                      {uploadImage1?.image1?.name || "Choose Image"}
-                    </div>
-                  </label>
-                </div>
-                {(uploadImage1?.url || defaultValues?.image1) && (
-                  <img
-                    className="w-20 mt-2"
-                    src={uploadImage1?.url || defaultValues?.image1}
-                    alt="Preview"
-                  />
-                )}
-              </div>
-            </div>
-
             {/* Ratings & Submit */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1 text-sm">

@@ -1,37 +1,37 @@
-import { useState } from 'react'
-import DeleteModal from '../../Modals/DeleteModal/DeleteModal'
-import UpdateProductModal from '../UpdateProductModal/UpdateProductModal'
+import { useState } from 'react';
+import DeleteModal from '../../Modals/DeleteModal/DeleteModal';
+import UpdateProductModal from '../UpdateProductModal/UpdateProductModal';
 import PropTypes from 'prop-types';
 import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 import toast from 'react-hot-toast';
 
-
 const ProductDataRow = ({ productData, refetch }) => {
-   const axiosSecure = UseAxiosSecure();
-  //  Delete modal
-  let [isOpen, setIsOpen] = useState(false)
-  // update modal
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-  const { image, title, category, price, quantity, _id } = productData || {};
-  function openModal() {
-    setIsOpen(true)
-  }
-  function closeModal() {
-    setIsOpen(false)
-  }
-const handleDelete = async() =>{
-  try {
-    await axiosSecure.delete(`/products/${_id}`)
-    toast.success('Product successfully deleted')
-    refetch()
-  } catch (error) {
-    toast.error(error?.response?.data)
-    
-  }finally{
-    closeModal()
-  }
-}
+  const axiosSecure = UseAxiosSecure();
 
+  // Delete modal state
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Update modal state
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const { image, title, category, price, quantity, _id } = productData || {};
+
+  // Delete modal open/close
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
+  // Handle delete
+  const handleDelete = async () => {
+    try {
+      await axiosSecure.delete(`/products/${_id}`);
+      toast.success('Product successfully deleted');
+      refetch();
+    } catch (error) {
+      toast.error(error?.response?.data || 'Delete failed');
+    } finally {
+      closeModal();
+    }
+  };
 
   return (
     <tr>
@@ -40,7 +40,7 @@ const handleDelete = async() =>{
           <div className='flex-shrink-0'>
             <div className='block relative'>
               <img
-                alt='profile'
+                alt='product'
                 src={image}
                 className='mx-auto object-cover rounded h-10 w-15 '
               />
@@ -61,6 +61,7 @@ const handleDelete = async() =>{
         <p className='text-gray-900 whitespace-no-wrap'>{quantity}</p>
       </td>
 
+      {/* Delete Button */}
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <span
           onClick={openModal}
@@ -72,8 +73,14 @@ const handleDelete = async() =>{
           ></span>
           <span className='relative'>Delete</span>
         </span>
-        <DeleteModal handleDelete={handleDelete} isOpen={isOpen} closeModal={closeModal} />
+        <DeleteModal
+          handleDelete={handleDelete}
+          isOpen={isOpen}
+          closeModal={closeModal}
+        />
       </td>
+
+      {/* Update Button */}
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <span
           onClick={() => setIsEditModalOpen(true)}
@@ -85,21 +92,22 @@ const handleDelete = async() =>{
           ></span>
           <span className='relative'>Update</span>
         </span>
+
+        {/* ✅ এখানে product ও refetch পাঠানো হয়েছে */}
         <UpdateProductModal
           isOpen={isEditModalOpen}
           setIsEditModalOpen={setIsEditModalOpen}
+          product={productData}
+          refetch={refetch}
         />
       </td>
     </tr>
-  )
-}
+  );
+};
+
+ProductDataRow.propTypes = {
+  productData: PropTypes.object.isRequired,
+  refetch: PropTypes.func.isRequired,
+};
 
 export default ProductDataRow;
-ProductDataRow.propTypes = {
-  productData: PropTypes.object,
-  closeModal: PropTypes.func,
-  setIsOpen: PropTypes.func,
-  isOpen: PropTypes.func,
-  refetch: PropTypes.func,
-
-}
